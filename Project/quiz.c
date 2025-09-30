@@ -20,47 +20,51 @@ int question_8(void);
 int question_9(void);
 int question_10(void);
 void clear_keyboard_buffer(void);
+int play_again(void);
 
 int main(int argc, char * argv[])
 {
     int final_percentage;
     int score = 0;
     char c;
-    printf("Are you ready to play? (y/n):");
-    c = is_user_ready();
-    if (c == 'y' || c == 'Y')
-    {
+    do {
+        printf("Are you ready to play? (y/n):");
+        c = is_user_ready();
+        if (c == 'y' || c == 'Y')
+        {
+            
+            score += question_1(); // add 1 if correct or 0 if incorrect
+            
+            score += question_2();
+            
+            score += question_3();
+            
+            score += question_4();
+            
+            score += question_5();
+            printf("Your final is score: %d/5!\n", score);
+            printf("Your percentage: %d%c!\n", 20*score, '%');
+            
+            
+        }
+        else
+        {
+            
+            printf("Aww ok, cya later\n");
+        }
         
-        score += question_1(); // add 1 if correct or 0 if incorrect
-
-        score += question_2();
+        final_percentage = 20*score;
         
-        score += question_3();
-
-        score += question_4();
-        
-        score += question_5();
-        printf("Your final is score: %d/5!\n", score);
-        printf("Your percentage: %d%c!\n", 20*score, '%');
-        
-        
+        if (final_percentage > 60)
+        {
+            printf("Good Job, You're pretty smart!\n");
+        }
+        else
+        {
+            printf("You gotta get smarter!\n");
+        }
     }
-    else
-    {
-        
-        printf("Aww ok, cya later\n");
-    }
-    
-    final_percentage = 20*score;
-    
-    if (final_percentage > 60)
-    {
-        printf("Good Job, You're pretty smart!\n");
-    }
-    else
-    {
-        printf("You gotta get smarter!\n");
-    }
+    while (play_again());
 
 
     
@@ -85,7 +89,7 @@ int question_1(void)
     printf("D: December\n");
     printf("Answer:");
     scanf(" %c", &answer);
-    if (answer == 'C')
+    if (answer == 'C' || answer == 'c')
     {
         printf("That's Correct!\n");
         return 1;
@@ -107,7 +111,7 @@ int question_2(void)
     printf("D: July 4th\n");
     printf("Answer:");
     scanf(" %c", &answer2);
-    if (answer2 == 'D')
+    if (answer2 == 'D' || answer2 == 'd')
     {
         printf("That's Correct!\n");
         return 1;
@@ -129,7 +133,7 @@ int question_3(void)
     printf("D: Hinduism\n");
     printf("Answer:");
     scanf(" %c", &answer);
-    if (answer == 'A')
+    if (answer == 'A' || answer == 'a')
     {
         printf("That's Correct!\n");
         return 1;
@@ -151,7 +155,7 @@ int question_4(void)
     printf("D: 5\n");
     printf("Answer:");
     scanf(" %c", &answer);
-    if (answer == 'C')
+    if (answer == 'C' || answer == 'c')
     {
         printf("That's Correct!\n");
         return 1;
@@ -173,7 +177,7 @@ int question_5(void)
     printf("D: 1875\n");
     printf("Answer:");
     scanf(" %c", &answer);
-    if (answer == 'B')
+    if (answer == 'B' || answer == 'b')
     {
         printf("That's Correct!\n");
         return 1;
@@ -195,5 +199,20 @@ void clear_keyboard_buffer(void)
     {
         scanf("%c", &o);
     }
+}
+
+int play_again(void)
+{
+    
+    printf("Do you want to play again?");
+    char c = is_user_ready();
+    
+    if (c == 'y' || c == 'Y') {
+        return 1; // true
+    }
+    else
+        printf("Aww ok, cya later\n");
+    
+    return 0; // false
 }
 
