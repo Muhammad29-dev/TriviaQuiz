@@ -24,12 +24,13 @@ int play_again(void);
 
 int main(int argc, char * argv[])
 {
-    int final_percentage;
-    int score = 0;
-    char c;
+    
+    
+    
     do {
+        int score = 0;
         printf("Are you ready to play? (y/n):");
-        c = is_user_ready();
+        char c = is_user_ready();
         if (c == 'y' || c == 'Y')
         {
             
@@ -53,7 +54,7 @@ int main(int argc, char * argv[])
             printf("Aww ok, cya later\n");
         }
         
-        final_percentage = 20*score;
+        int final_percentage = 20*score;
         
         if (final_percentage > 60)
         {
@@ -208,6 +209,7 @@ int play_again(void)
     char c = is_user_ready();
     
     if (c == 'y' || c == 'Y') {
+        
         return 1; // true
     }
     else
@@ -215,4 +217,3 @@ int play_again(void)
     
     return 0; // false
 }
-
